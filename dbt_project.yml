@@ -24,22 +24,34 @@ models:
     bronze:
       +materialized: table
       +schema: bronze
+      +tags: ["bronze"]
+
     silver:
       +materialized: table
       +schema: silver
+      +tags: ["silver"]
+
     gold:
       +materialized: table
       +schema: gold
+      +tags: ["gold"]
+
     staging:
       +materialized: view
       +schema: staging
+      +tags: ["staging"]
+
     intermediate:
       +materialized: ephemeral
       +schema: intermediate
+      +tags: ["intermediate"]
+
     marts:
       +materialized: table
       +schema: marts
+      +tags: ["marts"]
 
 seeds:
   retail_dbt:
     +schema: seeds
+    +tags: ["seed"]
