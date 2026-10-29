@@ -1,0 +1,67 @@
+
+version: 2
+
+sources:
+  - name: sales_table
+    description: Retail star-schema source tables
+    database: "{{ target.catalog }}"
+    schema: dev
+    tables:
+      - name: fact_sales
+      - name: fact_returns
+      - name: dim_date
+      - name: dim_store
+      - name: dim_product
+      - name: dim_customer
+      - name: items
+
+  - name: helphub
+    description: Helphub subscription source tables
+    database: "{{ target.catalog }}"
+    schema: source
+    tables:
+      - name: hh_plans
+
+      - name: hh_accounts
+        config:
+          loaded_at_field: _synced_at
+          freshness:
+            warn_after:
+              count: 24
+              period: hour
+            error_after:
+              count: 48
+              period: hour
+
+      - name: hh_subscriptions
+        config:
+          loaded_at_field: _synced_at
+          freshness:
+            warn_after:
+              count: 24
+              period: hour
+            error_after:
+              count: 48
+              period: hour
+
+      - name: hh_invoices
+        config:
+          loaded_at_field: _synced_at
+          freshness:
+            warn_after:
+              count: 24
+              period: hour
+            error_after:
+              count: 48
+              period: hour
+
+      - name: hh_ticket_events
+        config:
+          loaded_at_field: _synced_at
+          freshness:
+            warn_after:
+              count: 24
+              period: hour
+            error_after:
+              count: 48
+              period: hour

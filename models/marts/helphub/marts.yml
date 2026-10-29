@@ -1,0 +1,55 @@
+
+version: 2
+
+models:
+  - name: mart_customer_health
+    description: Customer health and churn-risk metrics at one row per account.
+    columns:
+      - name: account_id
+        description: Unique identifier for each customer account.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: company_name
+        data_tests:
+          - not_null
+
+      - name: churn_risk_band
+        description: Customer churn risk classification.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Low', 'Medium', 'High']
+
+      - name: churn_risk_score
+        data_tests:
+          - not_null
+
+      - name: current_mrr
+        data_tests:
+          - not_null
+
+  - name: mart_mrr_by_region
+    description: Monthly and annual recurring revenue aggregated by region and tier.
+    columns:
+      - name: region
+        data_tests:
+          - not_null
+
+      - name: tier
+        data_tests:
+          - not_null
+
+      - name: paying_accounts
+        data_tests:
+          - not_null
+
+      - name: total_mrr
+        data_tests:
+          - not_null
+
+      - name: total_arr
+        data_tests:
+          - not_null
